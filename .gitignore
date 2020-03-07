@@ -1,6 +1,4 @@
-/.classpath
-/.project
-/.settings/
-/target/
+target/
 /.idea
 *.iml
+jdk1.7/target
