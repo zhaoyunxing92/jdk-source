@@ -2924,7 +2924,7 @@ public class Window extends Container implements Accessible {
      * @see Component#windowListenerK
      * @see Component#windowFocusListenerK
      * @see Component#ownedWindowK
-     * @see #readObject(ObjectInputStream)
+     * @see java.awt.Window#readObject(ObjectInputStream)
      */
     private void writeObject(ObjectOutputStream s) throws IOException {
         synchronized (this) {
@@ -3068,7 +3068,7 @@ public class Window extends Container implements Accessible {
      *   {@code GraphicsEnvironment.isHeadless} returns
      *   {@code true}
      * @see java.awt.GraphicsEnvironment#isHeadless
-     * @see #writeObject
+     * @see java.awt.Window#writeObject(ObjectInputStream)
      */
     private void readObject(ObjectInputStream s)
       throws ClassNotFoundException, IOException, HeadlessException
@@ -4107,6 +4107,11 @@ public class Window extends Container implements Accessible {
 
             public void setTrayIconWindow(Window w, boolean isTrayIconWindow) {
                 w.isTrayIconWindow = isTrayIconWindow;
+            }
+
+            @Override
+            public Window[] getOwnedWindows(Window window) {
+                return new Window[0];
             }
         }); // WindowAccessor
     } // static

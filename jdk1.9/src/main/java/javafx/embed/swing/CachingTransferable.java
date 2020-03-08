@@ -25,21 +25,16 @@
 
 package javafx.embed.swing;
 
-import com.sun.javafx.embed.EmbeddedSceneDSInterface;
-import com.sun.javafx.tk.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.dnd.DropTargetDragEvent;
-import java.awt.dnd.DropTargetDropEvent;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import javafx.scene.input.TransferMode;
-import java.io.UnsupportedEncodingException;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.DataFormat;
+
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A Transferable implementation backed by a Map.
