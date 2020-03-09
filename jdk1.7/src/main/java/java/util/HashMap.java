@@ -557,9 +557,11 @@ public class HashMap<K,V>
         }
 
         Entry[] newTable = new Entry[newCapacity];
-        boolean oldAltHashing = useAltHashing;
+        boolean oldAltHashing = useAltHashing; //默认是false
+        //新容量一般不可能大于 threshold(阀) Integer.MAX_VALUE
         useAltHashing |= sun.misc.VM.isBooted() &&
                 (newCapacity >= Holder.ALTERNATIVE_HASHING_THRESHOLD);
+        // 判断是否需要重新hash false ^ false= false
         boolean rehash = oldAltHashing ^ useAltHashing;
         transfer(newTable, rehash);
         table = newTable;
