@@ -576,6 +576,7 @@ public class HashMap<K,V>
         for (Entry<K,V> e : table) {
             while(null != e) {
                 Entry<K,V> next = e.next;
+                // 这一步是没有进行hash的
                 if (rehash) {
                     e.hash = null == e.key ? 0 : hash(e.key);
                 }
