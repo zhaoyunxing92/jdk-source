@@ -274,6 +274,9 @@ public class HashMap<K,V>
                                                loadFactor);
 
         // Find a power of 2 >= initialCapacity
+        // 这个算法是为了找出接近initialCapacity的2的幂次数，jdk1.8采用位运算优化
+        // Integer.highestOneBit 这个方法可以优化下面代码 这个是找出最高位的 eg: 5 > 4, 7 > 4, 9 > 8
+        // Integer.highestOneBit((initialCapacity-1)<<1) 先左移放大一倍
         int capacity = 1;
         while (capacity < initialCapacity)
             capacity <<= 1;
