@@ -638,8 +638,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             else {
                 for (int binCount = 0; ; ++binCount) {
                     if ((e = p.next) == null) {
-                        p.next = newNode(hash, key, value, null);
-                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        p.next = newNode(hash, key, value, null); //这个时候已经有8个node了
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st 8-1=7
                             treeifyBin(tab, hash);
                         break;
                     }
@@ -717,6 +717,9 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                         Node<K,V> next;
                         do {
                             next = e.next;
+                            // 取余结果只能是 0 or 16   eg: 17(1 0001) & 16(1 0000)
+                            //                                1 0000
+                            //                                1 0000 结果是16
                             if ((e.hash & oldCap) == 0) {
                                 if (loTail == null)
                                     loHead = e;
@@ -753,6 +756,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     final void treeifyBin(Node<K,V>[] tab, int hash) {
         int n, index; Node<K,V> e;
+        //在转树之前判断长度是否到64，不够则resize()
         if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
             resize();
         else if ((e = tab[index = (n - 1) & hash]) != null) {
